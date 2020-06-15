@@ -7,6 +7,7 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                 <span id="timer"></span>
             </div>
         </div>
-        <div class="row mt-5">
+        <div id="strPage" class="row mt-5">
             <div class="col-2">
             </div>
             <div class="col-8">
@@ -39,7 +40,32 @@
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <button type="button" class="btn-primary">Start Quiz</button>
+                        <button id="startQuiz" type="button" class="btn-primary">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="questions" class="row mt-5 hide">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="row text-left">
+                    <div class="col">
+                        <header>
+                            <h2>Question1</h2>
+                        </header>
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col">
+                        <p>Try to answer the following code related questions within the time limit. Keep in mind that
+                            every incorrect answer will penalize your score/time by 10 secs
+                        </p>
+                    </div>
+                </div>
+                <div class="row text-left hide">
+                    <div class="col">
+                        <span>Correct</span>
                     </div>
                 </div>
             </div>
