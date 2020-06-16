@@ -46,6 +46,8 @@ var questAnswerArr = [
 
 
 var strQuizBtn = document.getElementById("startQuiz");
+var ackBlock = document.getElementById("acknowlegeBlock");
+var ackDisplay = document.getElementById("ack");
 strQuizBtn.addEventListener("click", startQuiz);
 
 function startQuiz(event) {
@@ -75,9 +77,9 @@ function startQuiz(event) {
                 btn.textContent = answerItem[j];
                 li.setAttribute("id", j);
                 if (answerItem[j] === correctAns) {
-                    btn.setAttribute("data-index", correctAns);
+                    btn.setAttribute("data-index", "Correct");
                 } else {
-                    btn.setAttribute("data-index", "incorrect");
+                    btn.setAttribute("data-index", "Incorrect");
                 }
 
                 btn.setAttribute("class", "button btn btn-primary mb-2");
@@ -89,6 +91,10 @@ function startQuiz(event) {
                     console.log("event.target: " + event.target);
                     var targetBtn = event.target;
                     console.log("Answer selected: " + targetBtn.textContent);
+                    
+                        ackBlock.classList.remove("hide");
+                        ackDisplay.textContent = targetBtn.getAttribute("data-index");
+                    
                 });
             }
 
