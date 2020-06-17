@@ -6,7 +6,7 @@ var strPageEl = document.querySelector("#strPage");
 var quizEl = document.querySelector("#quizContent");
 var questionEl = document.querySelector("#question");
 var answerElList = document.querySelector("#ansChoice");
-
+var highScoreEl = document.querySelector("#highScoreContent");
 var secondsLeft = 75;
 
 var questAnswerArr = [
@@ -65,19 +65,24 @@ function startQuiz(event) {
 
             renderQuestions();
         } else if (index >= questAnswerArr.length || secondsLeft === 0) {
-
+           
             clearInterval(timerInterval);
-            alert("End of quiz");
+            console.log("End of quiz");
             //TODO:declare the function
-            //  showEnterHighScore();
+              showEnterHighScore();
         }
 
     }, 1000);
 }
+function showEnterHighScore(){
+    quizEl.classList.add("hide");
+    ackBlock.classList.add("hide");
+    highScoreEl.classList.remove("hide");
+}
 
 function renderQuestions() {
-
-    console.log("inside render");
+  //  var questionInterval = setInterval(function () {
+  
 
     if (index < questAnswerArr.length) {
         questionEl.innerHTML = "";
@@ -121,4 +126,11 @@ function renderQuestions() {
         }
 
     }
+    /*else if (index >= questAnswerArr.length) {
+
+        clearInterval(questionInterval);
+        console.log("End of render");
+        
+    }
+}, 1);*/
 }
