@@ -78,7 +78,7 @@ function startQuiz(event) {
 function showEnterHighScore(){
     quizEl.classList.add("hide");
     ackBlock.classList.add("hide");
-    displayScoreEl.textContent = "Your final score is " + (secondsLeft);
+    displayScoreEl.textContent = "Your final score is " + (timer);
     highScoreEl.classList.remove("hide");
 }
 
