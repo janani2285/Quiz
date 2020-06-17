@@ -26,28 +26,22 @@ var questAnswerArr = [
         question: "The condition in an if/else statement is enclosed within?",
         answers: ["quotes", "curly brackets", "parentheses", "square brackets"],
         correctAnswer: "parentheses"
-    }
-    /*,
+    },
     {
         question: "Arrays in JavaScript can be used to store?",
-        answers: ["numbers","other arrays","objects","all the above"],
+        answers: ["numbers", "other arrays", "objects", "all the above"],
         correctAnswer: "all the above"
     },
     {
         question: "When being assignmed to variables, String values must be enclosed within?",
-        answers: ["commas","curly brackets","quotes","parentheses"],
+        answers: ["commas", "curly brackets", "quotes", "parentheses"],
         correctAnswer: "quotes"
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is?",
-        answers: ["JavaScript","terminal/bash","for loop","console.log"],
+        answers: ["JavaScript", "terminal/bash", "for loop", "console.log"],
         correctAnswer: "console.log"
-    },
-    {
-        question: "A very useful tool used during development and debugging for printing content to the debugger is?",
-        answers: ["JavaScript","terminal/bash","for loop","console.log"],
-        correctAnswer: "console.log"
-    }*/
+    }
 ];
 
 
@@ -70,21 +64,24 @@ function startQuiz(event) {
 
             document.getElementById("timer").textContent = "Time: " + timer;
 
-            renderQuestions();
+
             ackBlock.classList.add("hide");
         } else if (index >= questAnswerArr.length || secondsLeft === 0) {
-            if(secondsLeft === 0){
+            if (secondsLeft === 0) {
                 timer = 0;
 
                 document.getElementById("timer").textContent = "Time: " + timer;
             }
-         
+
             clearInterval(timerInterval);
             showEnterHighScore();
         }
 
     }, 1000);
+
+    renderQuestions();
 }
+
 
 //Function to show high score
 function showEnterHighScore() {
@@ -120,7 +117,7 @@ function showEnterHighScore() {
 
 //Function to display questions and choices
 function renderQuestions() {
-   
+
     if (index < questAnswerArr.length) {
         questionEl.innerHTML = "";
         answerElList.innerHTML = "";
@@ -129,6 +126,7 @@ function renderQuestions() {
         questionEl.textContent = questionItem.question;
         var answerItem = questAnswerArr[index].answers;
         var correctAns = questAnswerArr[index].correctAnswer;
+
 
         for (var j = 0; j < answerItem.length; j++) {
 
@@ -148,13 +146,16 @@ function renderQuestions() {
 
             btn.addEventListener("click", function (event) {
                 var targetBtn = event.target;
+
                 ackBlock.classList.remove("hide");
                 ackDisplay.textContent = targetBtn.getAttribute("data-index");
                 if (targetBtn.getAttribute("data-index") === "Incorrect") {
+
                     secondsLeft = secondsLeft - 10;
                     timer = secondsLeft;
                     document.getElementById("timer").textContent = "Time: " + timer;
                 }
+
                 index++;
                 renderQuestions();
 
