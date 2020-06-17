@@ -7,6 +7,7 @@ var quizEl = document.querySelector("#quizContent");
 var questionEl = document.querySelector("#question");
 var answerElList = document.querySelector("#ansChoice");
 var highScoreEl = document.querySelector("#highScoreContent");
+var displayScoreEl = document.querySelector("#displayScore");
 var secondsLeft = 75;
 
 var questAnswerArr = [
@@ -77,6 +78,7 @@ function startQuiz(event) {
 function showEnterHighScore(){
     quizEl.classList.add("hide");
     ackBlock.classList.add("hide");
+    displayScoreEl.textContent = "Your final score is " + (secondsLeft+1);
     highScoreEl.classList.remove("hide");
 }
 
