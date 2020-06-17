@@ -2,22 +2,23 @@
 init();
 
 function init(){
-  console.log("inside init");
+ 
     var scoreBlockEl = document.getElementById("scoresBlock");
     var scoresListEl = document.getElementById("scoresList");
+    var goBackEl = document.getElementById("goBack");
 
-    for(var i=0;i<scoreBlockEl.length;i++) {
+    /*for(var i=0;i<scoreBlockEl.length;i++) {
       //  scoreBlockEl[i].classList.add(i % 2 === 0 ? "even" : "odd");
       //or
       scoreBlockEl[i].style["background-color"] = i % 2 === 0 ? "grey" : "white";
       scoreBlockEl[i].style["color"] = i % 2 === 0 ? "white" : "black";
-    }
+    }*/
     
     var scoreLocalStorageObjArr = JSON.parse(localStorage.getItem("score"));
     if(scoreLocalStorageObjArr === null){
       scoresListEl.classList.add("hide");
     }else{
-      console.log("inside else");
+      
       for(var j=0; j< scoreLocalStorageObjArr.length; j++){
         console.log("INSIDE FOR");
         var li = document.createElement("li");
@@ -38,6 +39,10 @@ function init(){
       }
   
     }
+
+    goBackEl.addEventListener("click",function(){
+      window.location.href = "index.html";
+    });
     
 }
 
