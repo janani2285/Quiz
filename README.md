@@ -16,3 +16,14 @@ Git is used for version controling and for perioding commits to Gitlab.
 
 ## Deployed Application URL
  https://janani2285.github.io/Quiz/
+
+
+## Screenshots of the application
+
+<img src="assets/images/index.png">
+
+<img src="assets/images/quiz.png">
+
+<img src="assets/images/endofquiz.png">
+
+<img src="assets/images/highscore.png">
