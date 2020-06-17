@@ -78,7 +78,7 @@ function startQuiz(event) {
 function showEnterHighScore(){
     quizEl.classList.add("hide");
     ackBlock.classList.add("hide");
-    displayScoreEl.textContent = "Your final score is " + (secondsLeft+1);
+    displayScoreEl.textContent = "Your final score is " + (secondsLeft);
     highScoreEl.classList.remove("hide");
 }
 
@@ -117,7 +117,7 @@ function renderQuestions() {
                 ackBlock.classList.remove("hide");
                 ackDisplay.textContent = targetBtn.getAttribute("data-index");
                if(targetBtn.getAttribute("data-index") ==="Incorrect"){
-                secondsLeft = secondsLeft-10
+                secondsLeft = secondsLeft-10;
                 timer = secondsLeft;
                 document.getElementById("timer").textContent = "Time: " + timer;
                }
@@ -131,8 +131,8 @@ function renderQuestions() {
     /*else if (index >= questAnswerArr.length) {
 
         clearInterval(questionInterval);
-        console.log("End of render");
+       // console.log("End of render");
         
     }
-}, 1);*/
+}, 1000);*/
 }
