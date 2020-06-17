@@ -52,18 +52,19 @@ var index = 0;
 
 function startQuiz(event) {
 
+
     var timerInterval = setInterval(function () {
         strPageEl.classList.add("hide");
         quizEl.classList.remove("hide");
-
-        timer = secondsLeft--;
-
-        document.getElementById("timer").textContent = "Time: " + timer;
-
-        renderQuestions();
+        if (index < questAnswerArr.length) {
 
 
-        if (secondsLeft === 0) {
+            timer = secondsLeft--;
+
+            document.getElementById("timer").textContent = "Time: " + timer;
+
+            renderQuestions();
+        } else if (index >= questAnswerArr.length || secondsLeft === 0) {
 
             clearInterval(timerInterval);
             alert("End of quiz");
@@ -76,9 +77,10 @@ function startQuiz(event) {
 
 function renderQuestions() {
 
-    console.log("inside render")
-    if (index < questAnswerArr.length) {
+    console.log("inside render");
 
+    if (index < questAnswerArr.length) {
+        questionEl.innerHTML = "";
         answerElList.innerHTML = "";
 
         var questionItem = questAnswerArr[index];
@@ -101,13 +103,17 @@ function renderQuestions() {
             btn.setAttribute("class", "button btn btn-primary mb-2");
             li.appendChild(btn);
             answerElList.appendChild(li);
-         //   ackBlock.classList.add("hide");
+            //   ackBlock.classList.add("hide");
 
             btn.addEventListener("click", function (event) {
                 var targetBtn = event.target;
                 ackBlock.classList.remove("hide");
                 ackDisplay.textContent = targetBtn.getAttribute("data-index");
-                console.log("inside eventlistener-before calling start quiz again");
+               if(targetBtn.getAttribute("data-index") ==="Incorrect"){
+                secondsLeft = secondsLeft-10
+                timer = secondsLeft;
+                document.getElementById("timer").textContent = "Time: " + timer;
+               }
                 index++;
                 renderQuestions();
 
