@@ -6,6 +6,7 @@ function init(){
     var scoreBlockEl = document.getElementById("scoresBlock");
     var scoresListEl = document.getElementById("scoresList");
     var goBackEl = document.getElementById("goBack");
+    var clearEl = document.getElementById("clear");
 
     /*for(var i=0;i<scoreBlockEl.length;i++) {
       //  scoreBlockEl[i].classList.add(i % 2 === 0 ? "even" : "odd");
@@ -44,6 +45,10 @@ function init(){
       window.location.href = "index.html";
     });
     
+    clearEl.addEventListener("click",function(){
+     localStorage.clear();
+     init();
+    });
 }
 
 
