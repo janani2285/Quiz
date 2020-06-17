@@ -1,3 +1,6 @@
 .hide {
     display:none;
 }
+#scoresList li:nth-of-type(odd){
+background-color: lavender;
+}

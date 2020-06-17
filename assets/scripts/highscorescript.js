@@ -21,8 +21,8 @@ function init() {
       var li = document.createElement("li");
       li.textContent = scoreLocalStorageObjArr[j].user + " : " + scoreLocalStorageObjArr[j].score;
       li.style.fontSize = "20px";
-      li.style.marginBottom = "20px";
-      li.style.marginTop = "20px";
+     // li.style.marginBottom = "20px";
+      li.style.marginTop = "5px";
       scoresListEl.appendChild(li);
     }
   }
