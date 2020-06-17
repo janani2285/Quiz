@@ -2,6 +2,7 @@ var timer = 0;
 
 document.getElementById("timer").textContent = "Time: " + timer;
 
+//Retriveing Elements
 var strPageEl = document.querySelector("#strPage");
 var quizEl = document.querySelector("#quizContent");
 var questionEl = document.querySelector("#question");
@@ -11,9 +12,10 @@ var displayScoreEl = document.querySelector("#displayScore");
 var highScoreBtnEl = document.querySelector("#highScoreBtn");
 var initialTextBoxEl = document.querySelector("#initialTextBox");
 
-
+//Setting timer variable
 var secondsLeft = 75;
 
+//Quiz questions, answers stored as an array of objects
 var questAnswerArr = [
     {
         question: "Which is not a JavaScript data type?",
@@ -55,9 +57,8 @@ var ackDisplay = document.getElementById("ack");
 strQuizBtn.addEventListener("click", startQuiz);
 var index = 0;
 
+//Function to start the timed quiz
 function startQuiz(event) {
-
-
     var timerInterval = setInterval(function () {
         strPageEl.classList.add("hide");
         quizEl.classList.remove("hide");
@@ -71,48 +72,49 @@ function startQuiz(event) {
             renderQuestions();
             ackBlock.classList.add("hide");
         } else if (index >= questAnswerArr.length || secondsLeft === 0) {
-           
+
             clearInterval(timerInterval);
             showEnterHighScore();
         }
 
     }, 1000);
 }
-function showEnterHighScore(){
+
+//Function to show high score
+function showEnterHighScore() {
     quizEl.classList.add("hide");
     ackBlock.classList.add("hide");
     displayScoreEl.textContent = "Your final score is " + (timer);
     highScoreEl.classList.remove("hide");
     highScoreBtnEl.addEventListener("click", function (event) {
         event.preventDefault();
-       
-          if(localStorage.getItem("score") === null){
-            var scoreObjArr= [{
+
+        if (localStorage.getItem("score") === null) {
+            var scoreObjArr = [{
                 user: initialTextBoxEl.value.trim(),
                 score: timer
-              }];
-              var scoreStr = JSON.stringify(scoreObjArr);
+            }];
+            var scoreStr = JSON.stringify(scoreObjArr);
             localStorage.setItem("score", scoreStr);
-          }else{
+        } else {
             var scoreLocalStorageObjArr = JSON.parse(localStorage.getItem("score"));
-            var scoreObj= {
+            var scoreObj = {
                 user: initialTextBoxEl.value.trim(),
                 score: timer
-              };
+            };
             scoreLocalStorageObjArr.push(scoreObj);
             var scoreStr = JSON.stringify(scoreLocalStorageObjArr);
             localStorage.setItem("score", scoreStr);
-          }
-          localStorage.setItem("score", scoreStr);
-        
-       window.location.href = "highscores.html";
+        }
+        localStorage.setItem("score", scoreStr);
+
+        window.location.href = "highscores.html";
     });
 }
 
+//Function to display questions and choices
 function renderQuestions() {
-  //  var questionInterval = setInterval(function () {
-  
-
+   
     if (index < questAnswerArr.length) {
         questionEl.innerHTML = "";
         answerElList.innerHTML = "";
@@ -137,17 +139,16 @@ function renderQuestions() {
             btn.setAttribute("class", "button btn btn-primary mb-2");
             li.appendChild(btn);
             answerElList.appendChild(li);
-            //   ackBlock.classList.add("hide");
 
             btn.addEventListener("click", function (event) {
                 var targetBtn = event.target;
                 ackBlock.classList.remove("hide");
                 ackDisplay.textContent = targetBtn.getAttribute("data-index");
-               if(targetBtn.getAttribute("data-index") ==="Incorrect"){
-                secondsLeft = secondsLeft-10;
-                timer = secondsLeft;
-                document.getElementById("timer").textContent = "Time: " + timer;
-               }
+                if (targetBtn.getAttribute("data-index") === "Incorrect") {
+                    secondsLeft = secondsLeft - 10;
+                    timer = secondsLeft;
+                    document.getElementById("timer").textContent = "Time: " + timer;
+                }
                 index++;
                 renderQuestions();
 
@@ -155,11 +156,4 @@ function renderQuestions() {
         }
 
     }
-    /*else if (index >= questAnswerArr.length) {
-
-        clearInterval(questionInterval);
-       // console.log("End of render");
-        
-    }
-}, 1000);*/
 }
