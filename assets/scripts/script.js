@@ -8,6 +8,8 @@ var questionEl = document.querySelector("#question");
 var answerElList = document.querySelector("#ansChoice");
 var highScoreEl = document.querySelector("#highScoreContent");
 var displayScoreEl = document.querySelector("#displayScore");
+var highScoreBtnEl = document.querySelector("#highScoreBtn");
+
 var secondsLeft = 75;
 
 var questAnswerArr = [
@@ -65,12 +67,11 @@ function startQuiz(event) {
             document.getElementById("timer").textContent = "Time: " + timer;
 
             renderQuestions();
+            ackBlock.classList.add("hide");
         } else if (index >= questAnswerArr.length || secondsLeft === 0) {
            
             clearInterval(timerInterval);
-            console.log("End of quiz");
-            //TODO:declare the function
-              showEnterHighScore();
+            showEnterHighScore();
         }
 
     }, 1000);
@@ -80,6 +81,10 @@ function showEnterHighScore(){
     ackBlock.classList.add("hide");
     displayScoreEl.textContent = "Your final score is " + (timer);
     highScoreEl.classList.remove("hide");
+    highScoreBtnEl.addEventListener("click", function (event) {
+        event.preventDefault();
+       window.location.href = "highscores.html";
+    });
 }
 
 function renderQuestions() {
