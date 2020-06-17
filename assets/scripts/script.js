@@ -150,8 +150,13 @@ function renderQuestions() {
                 ackBlock.classList.remove("hide");
                 ackDisplay.textContent = targetBtn.getAttribute("data-index");
                 if (targetBtn.getAttribute("data-index") === "Incorrect") {
-
-                    secondsLeft = secondsLeft - 10;
+                    if(secondsLeft<10){
+                        secondsLeft =0;
+                        
+                    }else{
+                        secondsLeft = secondsLeft - 10;
+                    }
+                  //  secondsLeft = secondsLeft - 10;
                     timer = secondsLeft;
                     document.getElementById("timer").textContent = "Time: " + timer;
                 }
