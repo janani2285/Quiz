@@ -27,7 +27,8 @@ var questAnswerArr = [
         answers: ["quotes", "curly brackets", "parentheses", "square brackets"],
         correctAnswer: "parentheses"
     }
-    /*{
+    /*,
+    {
         question: "Arrays in JavaScript can be used to store?",
         answers: ["numbers","other arrays","objects","all the above"],
         correctAnswer: "all the above"
@@ -62,7 +63,7 @@ function startQuiz(event) {
     var timerInterval = setInterval(function () {
         strPageEl.classList.add("hide");
         quizEl.classList.remove("hide");
-        if (index < questAnswerArr.length) {
+        if (index < questAnswerArr.length && secondsLeft != 0) {
 
 
             timer = secondsLeft--;
@@ -72,7 +73,12 @@ function startQuiz(event) {
             renderQuestions();
             ackBlock.classList.add("hide");
         } else if (index >= questAnswerArr.length || secondsLeft === 0) {
+            if(secondsLeft === 0){
+                timer = 0;
 
+                document.getElementById("timer").textContent = "Time: " + timer;
+            }
+         
             clearInterval(timerInterval);
             showEnterHighScore();
         }
