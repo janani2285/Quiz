@@ -9,6 +9,8 @@ var answerElList = document.querySelector("#ansChoice");
 var highScoreEl = document.querySelector("#highScoreContent");
 var displayScoreEl = document.querySelector("#displayScore");
 var highScoreBtnEl = document.querySelector("#highScoreBtn");
+var initialTextBoxEl = document.querySelector("#initialTextBox");
+
 
 var secondsLeft = 75;
 
@@ -83,6 +85,26 @@ function showEnterHighScore(){
     highScoreEl.classList.remove("hide");
     highScoreBtnEl.addEventListener("click", function (event) {
         event.preventDefault();
+       
+          if(localStorage.getItem("score") === null){
+            var scoreObjArr= [{
+                user: initialTextBoxEl.value.trim(),
+                score: timer
+              }];
+              var scoreStr = JSON.stringify(scoreObjArr);
+            localStorage.setItem("score", scoreStr);
+          }else{
+            var scoreLocalStorageObjArr = JSON.parse(localStorage.getItem("score"));
+            var scoreObj= {
+                user: initialTextBoxEl.value.trim(),
+                score: timer
+              };
+            scoreLocalStorageObjArr.push(scoreObj);
+            var scoreStr = JSON.stringify(scoreLocalStorageObjArr);
+            localStorage.setItem("score", scoreStr);
+          }
+          localStorage.setItem("score", scoreStr);
+        
        window.location.href = "highscores.html";
     });
 }
